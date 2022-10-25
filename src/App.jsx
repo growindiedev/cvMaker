@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Button } from './components/Button'
-import {Form} from './components/Form'
+import Form from './components/Form'
 
 const Wrapper = styled.div`
   display: grid;

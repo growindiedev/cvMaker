@@ -8,10 +8,13 @@ const Wrapper = styled.form`
   justify-self: center;
   margin-bottom: 3rem;
 `
-
-export const Form = () => {
+const Form = () => {
   return (
-    <Wrapper>Form</Wrapper>
+    <Wrapper>
+
+    </Wrapper>
   )
 }
+
+export default Form;
 

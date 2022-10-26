@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
+ const Button = styled.button`
   color: #0369a1;
   font-size: 1rem;
   outline: 0;
@@ -31,3 +31,5 @@ export const Button = styled.button`
   }
                 
 `
+
+export default Button;

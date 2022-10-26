@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-import { Button } from './components/Button'
+import Button from './components/Button'
 import Form from './components/Form'
 
 const Wrapper = styled.div`
   display: grid;
-  //flex-direction: column;
 `
 
 const Header = styled.div`
@@ -22,7 +21,6 @@ const BtnContainer =  styled.div`
   height: 12vh;
   justify-content: center;
   align-items: center;
- // border: 1px solid red;
   gap: 2rem;
 `
 

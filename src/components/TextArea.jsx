@@ -6,7 +6,6 @@ const TextArea = styled.textarea`
   color: rgb(36, 35, 42);
   font-size: 16px;
   line-height: 18px;
-  //min-height: 28px;
   border-radius: 4px;
   padding: 8px 16px;
   border: 2px solid transparent;

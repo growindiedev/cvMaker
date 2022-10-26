@@ -7,7 +7,8 @@ const Wrapper = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-
+  //border: 1px solid blue;
+  margin-bottom: 3rem;
   .title, .textArea {
     grid-column: 1/-1;
   }

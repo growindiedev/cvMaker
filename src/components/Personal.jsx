@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Input from './Input'
-import TextArea from './TextArea'
+import Input from './common/Input'
+import TextArea from './common/TextArea'
 
 const Wrapper = styled.form`
   display: grid;

@@ -25,16 +25,17 @@ const Wrapper = styled.form`
 `
 
 const Education = () => {
+  
   return (
     <Wrapper>
       <div className='grid-container'>
       <h2 className='section-heading'>Education</h2>
-      <Input placeholder='Area'/>
-      <Input placeholder='School'/>
-      <Input placeholder='Start Date' className='title'/>
-      <Input placeholder='End Date'/>
-      <TextArea className='textArea' placeholder='description' rows={3}/>
-      <Button className='rmv-edu'>Remove Education</Button>
+        <Input placeholder='Area'/>
+        <Input placeholder='School'/>
+        <Input placeholder='Start Date' className='title'/>
+        <Input placeholder='End Date'/>
+        <TextArea className='textArea' placeholder='description' rows={3}/>
+        <Button className='rmv-edu'>Remove Education</Button>
       </div>
     <Button>Add Education</Button>
     </Wrapper>

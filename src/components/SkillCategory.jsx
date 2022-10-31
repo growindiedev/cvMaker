@@ -29,18 +29,27 @@ const Wrapper = styled.form`
 
 `
 
-const SkillCategory = () => {
+const SkillCategory = ({skillForm, setSkillForm, id}) => {
+//const SkillCategory =() => {
+  const removeSkillCategory = (e) => {
+    e.preventDefault();
+    setSkillForm(skillForm.filter((_, index) => {
+      return id !== index
+    }))
+
+  }
+  
   return (
     <Wrapper>
       <div className='flex-conatiner'>
       <Input className="skill-category-skill" placeholder='skill category'/>
-      <Button className='close-skill-category-skill'>X</Button>
+      <Button className='close-skill-category-skill' onClick={removeSkillCategory}>X</Button>
       </div>
       <div className='flex-container-sub'>
           <Input className="skill-category" placeholder='skill'/>
           <Button className='close-skill-category'>X</Button>
       </div>
-    <Button className='add-skill'>Add Skill</Button>
+    <Button className='add-skill' >Add Skill</Button>
     </Wrapper>
   )
 }

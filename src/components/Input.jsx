@@ -5,7 +5,7 @@ const Input = styled.input`
   color: rgb(36, 35, 42);
   font-size: 16px;
   line-height: 10px;
-  min-height: 28px;
+  min-height: 25px;
   border-radius: 4px;
   padding: 8px 16px;
   border: 2px solid transparent;

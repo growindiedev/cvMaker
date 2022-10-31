@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Input from './Input'
-import Button from './Button'
-import TextArea from './TextArea'
+import Input from './common/Input'
+import Button from './common/Button'
+import TextArea from './common/TextArea'
 
 const Wrapper = styled.form`
   margin-bottom: 2rem;

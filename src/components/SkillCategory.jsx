@@ -1,7 +1,7 @@
 import React from 'react'
-import Input from './Input'
+import Input from './common/Input'
 import styled from 'styled-components'
-import Button from './Button'
+import Button from './common/Button'
 
 
 const Wrapper = styled.form`

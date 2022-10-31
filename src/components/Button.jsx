@@ -17,7 +17,7 @@ import styled from 'styled-components'
   justify-content: center;
   line-height: 1.5;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: 6px 12px;
   text-decoration: none;
   text-overflow: ellipsis;
   transition: all .14s ease-out;

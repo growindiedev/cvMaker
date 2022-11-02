@@ -24,7 +24,7 @@ const Skills = () => {
     <Wrapper>
       <h2 className='section-heading'>Skills</h2>
       {
-        skillForm.map((Skill, i) => <Skill key={i} skillForm={skillForm} setSkillForm={setSkillForm} id={i}/>)
+        skillForm.map((SkillForm, i) => <SkillForm key={i} skillForm={skillForm} setSkillForm={setSkillForm} id={i}/>)
       }
       <Button onClick={handleClick}>Add Skill Category</Button>
     </Wrapper>

@@ -23,14 +23,12 @@ const Wrapper = styled.form`
   }
 
   .add-skill, .flex-container-sub{
-    //margin-left: 1rem;
     transform: scale(0.9);
   }
 
 `
 
 const SkillCategory = ({skillForm, setSkillForm, id}) => {
-//const SkillCategory =() => {
   const removeSkillCategory = (e) => {
     e.preventDefault();
     setSkillForm(skillForm.filter((_, index) => {

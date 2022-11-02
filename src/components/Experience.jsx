@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Input from './common/Input'
 import Button from './common/Button'
@@ -6,6 +6,11 @@ import TextArea from './common/TextArea'
 
 const Wrapper = styled.form`
   margin-bottom: 2rem;
+
+  .section-heading {
+    margin-bottom: 1.5rem;
+  }
+
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -20,22 +25,44 @@ const Wrapper = styled.form`
     .textArea {
       grid-column: 1/-1;
     }
+
 }
 `
+const InnerForm = ({innerForm, setInnerForm, id}) => {
+  
+  const removeInnerForm = (e) => {
+    e.preventDefault();
+    setInnerForm(innerForm.filter((_, index) => {
+      return id !== index
+    }))
+  }
+  
+  return (
+  <div className='grid-container'>
+    <Input placeholder='Title'/>
+    <Input placeholder='Company Name'/>
+    <Input placeholder='Start Date' className='title'/>
+    <Input placeholder='End Date'/>
+    <TextArea className='textArea' placeholder='description' rows={3}/>
+    <Button className='rmv-pos' onClick={removeInnerForm}>Remove Position</Button>
+  </div>
+)}
 
 const Experience = () => {
+  const [innerForm, setInnerForm] = useState([])
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    setInnerForm([...innerForm, InnerForm])
+  }
+
   return (
     <Wrapper>
-      <div className='grid-container'>
       <h2 className='section-heading'>Experience</h2>
-      <Input placeholder='Title'/>
-      <Input placeholder='Company Name'/>
-      <Input placeholder='Start Date' className='title'/>
-      <Input placeholder='End Date'/>
-      <TextArea className='textArea' placeholder='description' rows={3}/>
-      <Button className='rmv-pos'>Remove Position</Button>
-      </div>
-    <Button>Add Position</Button>
+      {
+        innerForm.map((Form, i) => <Form key={i} id={i} innerForm={innerForm} setInnerForm={setInnerForm}/>)
+      }
+    <Button onClick={handleClick}>Add Position</Button>
     </Wrapper>
   )
 }

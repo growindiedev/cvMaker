@@ -1,6 +1,9 @@
+import React from 'react'
 import styled from 'styled-components'
 import Button from './components/common/Button'
 import Form from './components/Form'
+import {useForm, FormProvider} from 'react-hook-form'
+
 
 const Wrapper = styled.div`
   display: grid;
@@ -26,6 +29,8 @@ const BtnContainer =  styled.div`
 
 
 function App() {
+  const methods = useForm();
+
   return (
     <Wrapper>
       <Header>CV Generator</Header>
@@ -34,10 +39,11 @@ function App() {
         <Button>Auto Fill</Button>
         <Button>Reset</Button>
       </BtnContainer>
+      <FormProvider {...methods}>
       <Form/>
+      </FormProvider>
     </Wrapper>
   );
 }
-
 
 export default App;

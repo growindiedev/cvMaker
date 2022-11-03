@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Input from './common/Input'
 import styled from 'styled-components'
 import Button from './common/Button'
+import { useFormContext } from 'react-hook-form'
 
 
 const Wrapper = styled.form`
@@ -30,6 +31,7 @@ const Wrapper = styled.form`
 
 
 const Skill = ({innerForm, setInnerForm, id}) => {
+  const {register} =  useFormContext();
 
   const removeInnerForm = (e) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ const Skill = ({innerForm, setInnerForm, id}) => {
 
   return (
     <div className='flex-container-sub'>
-      <Input className="skill-category" placeholder='skill'/>
+      <Input className="skill-category" placeholder='skill' {...register('skill')}/>
       <Button className='close-skill-category' onClick={removeInnerForm}>X</Button>
     </div>
   )
@@ -48,6 +50,7 @@ const Skill = ({innerForm, setInnerForm, id}) => {
 
 
 const SkillCategory = ({skillForm, setSkillForm, id}) => {
+  const {register} =  useFormContext();
 
   const [innerForm, setInnerForm] = useState([])
 
@@ -67,7 +70,7 @@ const SkillCategory = ({skillForm, setSkillForm, id}) => {
   return (
     <Wrapper>
       <div className='flex-conatiner'>
-      <Input className="skill-category-skill" placeholder='skill category'/>
+      <Input className="skill-category-skill" placeholder='skill category' {...register('skill-category')}/>
       <Button className='close-skill-category-skill' onClick={removeSkillCategory}>X</Button>
       </div>
 

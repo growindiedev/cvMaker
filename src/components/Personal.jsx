@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Input from './common/Input'
 import TextArea from './common/TextArea'
+import { useFormContext } from "react-hook-form";
 
 const Wrapper = styled.form`
   display: grid;
@@ -16,17 +17,18 @@ const Wrapper = styled.form`
 `
 
 const Personal = () => {
+  const {register} =  useFormContext();
   return (
     <Wrapper>
       <h2 className='section-heading'>Personal Information</h2>
-      <Input placeholder='First Name'/>
-      <Input placeholder='Last Name'/>
-      <Input placeholder='Title (e.g Backend Engineer)' className='title'/>
-      <Input placeholder='Email'/>
-      <Input placeholder='Phone'/>
-      <Input placeholder='LinkedIn username'/>
-      <Input placeholder='Github username'/>
-      <TextArea className='textArea' placeholder='describe yourself here' rows={3}/>
+      <Input placeholder='First Name' {...register("first-name") }/>
+      <Input placeholder='Last Name' {...register('last-name')}/>
+      <Input placeholder='Title (e.g Backend Engineer)'className='title' {...register('job-title')}/>
+      <Input placeholder='Email' {...register('email')}/>
+      <Input placeholder='Phone' {...register('phone')}/>
+      <Input placeholder='LinkedIn username' {...register('linkedin')}/>
+      <Input placeholder='Github username' {...register('github')}/>
+      <TextArea className='textArea' placeholder='describe yourself here' rows={3} {...register('personal-description')}/>
     </Wrapper>
   )
 }

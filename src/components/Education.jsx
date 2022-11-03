@@ -1,5 +1,6 @@
 
 import React, {useState} from 'react'
+import { useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
 import Input from './common/Input'
 import Button from './common/Button'
@@ -29,7 +30,7 @@ const Wrapper = styled.form`
 `
 
 const InnerForm = ({innerForm, setInnerForm, id}) => {
-  
+  const {register} =  useFormContext();
   const removeInnerForm = (e) => {
     e.preventDefault();
     setInnerForm(innerForm.filter((_, index) => {
@@ -39,11 +40,11 @@ const InnerForm = ({innerForm, setInnerForm, id}) => {
   
   return (
   <div className='grid-container'>
-        <Input placeholder='Area'/>
-        <Input placeholder='School'/>
-        <Input placeholder='Start Date' className='title'/>
-        <Input placeholder='End Date'/>
-        <TextArea className='textArea' placeholder='description' rows={3}/>
+        <Input placeholder='Course/Degree' {...register('course-degree')}/>
+        <Input placeholder='School' {...register('school')}/>
+        <Input placeholder='Start Date' className='title' {...register('course-start-date')}/>
+        <Input placeholder='End Date' {...register('course-end-date')}/>
+        <TextArea className='textArea' placeholder='description' rows={3} {...register('course-description')}/>
         <Button onClick={removeInnerForm} className='rmv-edu'>Remove Education</Button>
   </div>
 )}

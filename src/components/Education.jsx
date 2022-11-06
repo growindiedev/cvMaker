@@ -40,11 +40,11 @@ const InnerForm = ({innerForm, setInnerForm, id}) => {
   
   return (
   <div className='grid-container'>
-        <Input placeholder='Course/Degree' {...register(`course-degree-${id}`)}/>
-        <Input placeholder='School' {...register(`school-${id}`)}/>
-        <Input placeholder='Start Date' className='title' {...register(`course-start-date-${id}`)}/>
-        <Input placeholder='End Date' {...register(`course-end-date-${id}`)}/>
-        <TextArea className='textArea' placeholder='description' rows={3} {...register(`course-description-${id}`)}/>
+        <Input placeholder='Course/Degree' {...register(`education.degree.${id}`)}/>
+        <Input placeholder='School' {...register(`education.school.${id}`)}/>
+        <Input placeholder='Start Date' className='title' {...register(`education.startDate.${id}`)}/>
+        <Input placeholder='End Date' {...register(`education.endDate.${id}`)}/>
+        <TextArea className='textArea' placeholder='description' rows={3} {...register(`education.description.${id}`)}/>
         <Button onClick={removeInnerForm} className='rmv-edu'>Remove Education</Button>
   </div>
 )}

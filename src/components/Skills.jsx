@@ -61,11 +61,11 @@ const SkillCategory = ({skillForm, setSkillForm, id}) => {
   return (
     <Wrapper>
       <div className='flex-conatiner'>
-      <Input className="skill-category" placeholder={id} {...register(`skill-category-${id}`)}/>
+      <Input className="skill-category" placeholder="Skill category" {...register(`skillCategory.${id}`)}/>
       <Button className='close-skill-category' onClick={removeSkillCategory}>X</Button>
       </div>
       {
-          innerForm.map((Form, i) => <Form key={i} id={i}  cid={`${id}${i}`} innerForm={innerForm} setInnerForm={setInnerForm}/>)
+          innerForm.map((Form, i) => <Form key={i} id={i} parentId={id} innerForm={innerForm} setInnerForm={setInnerForm}/>)
       }
     <Button className='add-skill' onClick={handleClick}>Add Skill</Button>
     </Wrapper>

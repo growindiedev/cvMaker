@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
 import Input from './common/Input'
@@ -40,11 +40,11 @@ const InnerForm = ({innerForm, setInnerForm, id}) => {
   
   return (
   <div className='grid-container'>
-        <Input placeholder='Course/Degree' {...register('course-degree')}/>
-        <Input placeholder='School' {...register('school')}/>
-        <Input placeholder='Start Date' className='title' {...register('course-start-date')}/>
-        <Input placeholder='End Date' {...register('course-end-date')}/>
-        <TextArea className='textArea' placeholder='description' rows={3} {...register('course-description')}/>
+        <Input placeholder='Course/Degree' {...register(`course-degree-${id}`)}/>
+        <Input placeholder='School' {...register(`school-${id}`)}/>
+        <Input placeholder='Start Date' className='title' {...register(`course-start-date-${id}`)}/>
+        <Input placeholder='End Date' {...register(`course-end-date-${id}`)}/>
+        <TextArea className='textArea' placeholder='description' rows={3} {...register(`course-description-${id}`)}/>
         <Button onClick={removeInnerForm} className='rmv-edu'>Remove Education</Button>
   </div>
 )}
@@ -54,10 +54,12 @@ const Education = () => {
   const [innerForm, setInnerForm] = useState([])
 
   const handleClick = (e) => {
-    e.preventDefault()
+    e && e.preventDefault()
     setInnerForm([...innerForm, InnerForm])
   }
-  
+
+  useEffect(() => handleClick, [])
+
   return (
     <Wrapper>
       <h2 className='section-heading'>Education</h2>

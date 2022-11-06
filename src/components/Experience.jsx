@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import styled from 'styled-components'
@@ -31,10 +31,11 @@ const Wrapper = styled.form`
 }
 `
 const InnerForm = ({innerForm, setInnerForm, id}) => {
-  const {register} =  useFormContext();
+  const {register, unregister} =  useFormContext();
 
   const removeInnerForm = (e) => {
     e.preventDefault();
+    unregister()
     setInnerForm(innerForm.filter((_, index) => {
       return id !== index
     }))
@@ -42,11 +43,11 @@ const InnerForm = ({innerForm, setInnerForm, id}) => {
   
   return (
   <div className='grid-container'>
-    <Input placeholder='Title' {...register('position-title')}/>
-    <Input placeholder='Company Name' {...register('company-name')}/>
-    <Input placeholder='Start Date' {...register('job-start-date')}/>
-    <Input placeholder='End Date' {...register('job-end-date')}/>
-    <TextArea className='textArea' placeholder='description' rows={3} {...register('job-description')}/>
+    <Input placeholder='Title' {...register(`company-title-${id}`)}/>
+    <Input placeholder='Company Name' {...register(`company-name-${id}`)}/>
+    <Input placeholder='Start Date' {...register(`job-start-date-${id}`)}/>
+    <Input placeholder='End Date' {...register(`job-end-date-${id}`)}/>
+    <TextArea className='textArea' placeholder='description' rows={3} {...register(`job-description-${id}`)}/>
     <Button className='rmv-pos' onClick={removeInnerForm}>Remove Position</Button>
   </div>
 )}
@@ -55,9 +56,11 @@ const Experience = () => {
   const [innerForm, setInnerForm] = useState([])
 
   const handleClick = (e) => {
-    e.preventDefault()
+    e && e.preventDefault()
     setInnerForm([...innerForm, InnerForm])
   }
+
+  useEffect(() => handleClick, [])
 
   return (
     <Wrapper>

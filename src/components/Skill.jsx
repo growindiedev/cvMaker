@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import Input from './common/Input'
-import styled from 'styled-components'
 import Button from './common/Button'
 import { useFormContext } from 'react-hook-form'
 
 
-const Skill = ({innerForm, setInnerForm, cid, id}) => {
+const Skill = ({innerForm, setInnerForm, id, parentId}) => {
   const {register} =  useFormContext();
 
   const removeInnerForm = (e) => {
@@ -17,13 +16,10 @@ const Skill = ({innerForm, setInnerForm, cid, id}) => {
 
   return (
     <div className='flex-container-sub'>
-      <Input className="skill-category-skill" placeholder={cid} {...register(`skill-${cid}`)}/>
+      <Input className="skill-category-skill" placeholder="skill" {...register(`skill.${parentId}.${id}`)}/>
       <Button className='close-skill-category-skill' onClick={removeInnerForm}>X</Button>
     </div>
   )
 }     
-
-
-
 
 export default Skill

@@ -43,11 +43,11 @@ const InnerForm = ({innerForm, setInnerForm, id}) => {
   
   return (
   <div className='grid-container'>
-    <Input placeholder='Title' {...register(`company-title-${id}`)}/>
-    <Input placeholder='Company Name' {...register(`company-name-${id}`)}/>
-    <Input placeholder='Start Date' {...register(`job-start-date-${id}`)}/>
-    <Input placeholder='End Date' {...register(`job-end-date-${id}`)}/>
-    <TextArea className='textArea' placeholder='description' rows={3} {...register(`job-description-${id}`)}/>
+    <Input placeholder='Title' {...register(`experience.title.${id}`)}/>
+    <Input placeholder='Company Name' {...register(`experience.companyName.${id}`)}/>
+    <Input placeholder='Start Date' {...register(`experience.startDate.${id}`)}/>
+    <Input placeholder='End Date' {...register(`experience.endDate.${id}`)}/>
+    <TextArea className='textArea' placeholder='description' rows={3} {...register(`experience.description.${id}`)}/>
     <Button className='rmv-pos' onClick={removeInnerForm}>Remove Position</Button>
   </div>
 )}

@@ -21,14 +21,14 @@ const Personal = () => {
   return (
     <Wrapper>
       <h2 className='section-heading'>Personal Information</h2>
-      <Input placeholder='First Name' {...register("first-name") }/>
-      <Input placeholder='Last Name' {...register('last-name')}/>
-      <Input placeholder='Title (e.g Backend Engineer)'className='title' {...register('job-title')}/>
+      <Input placeholder='First Name' {...register("firstName") }/>
+      <Input placeholder='Last Name' {...register('lastName')}/>
+      <Input placeholder='Title (e.g Backend Engineer)'className='title' {...register('jobTitle')}/>
       <Input placeholder='Email' {...register('email')}/>
       <Input placeholder='Phone' {...register('phone')}/>
       <Input placeholder='LinkedIn username' {...register('linkedin')}/>
       <Input placeholder='Github username' {...register('github')}/>
-      <TextArea className='textArea' placeholder='describe yourself here' rows={3} {...register('personal-description')}/>
+      <TextArea className='textArea' placeholder='describe yourself here' rows={3} {...register('personalDescription')}/>
     </Wrapper>
   )
 }

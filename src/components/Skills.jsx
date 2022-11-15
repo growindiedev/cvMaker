@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import uniqid from 'uniqid';
 import styled from 'styled-components'
 import Button from './common/Button'
 import Input from './common/Input'
@@ -38,22 +39,23 @@ const Wrapper = styled.form`
 
 `
 
-const SkillCategory = ({skillForm, setSkillForm, id}) => {
+const SkillCategory = ({skillForm, setSkillForm, pid}) => {
   const {register} =  useFormContext();
   const [innerForm, setInnerForm] = useState([])
 
-  const handleClick = (e) => {
+  const addSkill = (e) => {
     e && e.preventDefault()
-    setInnerForm([...innerForm, Skill])
+    setInnerForm([...innerForm, {Skill: Skill, uid: uniqid()}])
   }
 
-  useEffect(() => handleClick, [])
+  useEffect(() => addSkill, [])
 
 
   const removeSkillCategory = (e) => {
     e.preventDefault();
-    setSkillForm(skillForm.filter((_, index) => {
-      return id !== index
+    setSkillForm(skillForm.filter((item, index) => {
+      let {uid} = item
+      return uid !== pid;
     }))
 
   }
@@ -61,13 +63,17 @@ const SkillCategory = ({skillForm, setSkillForm, id}) => {
   return (
     <Wrapper>
       <div className='flex-conatiner'>
-      <Input className="skill-category" placeholder="Skill category" {...register(`skillCategory.${id}`)}/>
+      <Input className="skill-category" placeholder="Skill category" {...register(`skillCategory.${pid}`)}/>
       <Button className='close-skill-category' onClick={removeSkillCategory}>X</Button>
       </div>
       {
-          innerForm.map((Form, i) => <Form key={i} id={i} parentId={id} innerForm={innerForm} setInnerForm={setInnerForm}/>)
+          innerForm.map((item) => {
+            let {Skill, uid} = item;
+            return <Skill key={uid} id={uid} parentId={pid} innerForm={innerForm} setInnerForm={setInnerForm}/>
+          }
+        )
       }
-    <Button className='add-skill' onClick={handleClick}>Add Skill</Button>
+    <Button className='add-skill' onClick={addSkill}>Add Skill</Button>
     </Wrapper>
   )
 }
@@ -78,7 +84,7 @@ const Skills = () => {
 
   const handleClick = (e) => {
     e && e.preventDefault()
-    setSkillForm([...skillForm, SkillCategory])
+    setSkillForm([...skillForm, {SkillCategory: SkillCategory, uid: uniqid()}])
   }
 
   useEffect(() => handleClick, [])
@@ -88,7 +94,11 @@ const Skills = () => {
     <Wrap>
       <h2 className='section-heading'>Skills</h2>
       {
-        skillForm.map((SkillForm, i) => <SkillForm key={i} skillForm={skillForm} setSkillForm={setSkillForm} id={i}/>)
+        skillForm.map((item) => {
+          let {SkillCategory, uid} = item;
+          return <SkillCategory key={uid} skillForm={skillForm} setSkillForm={setSkillForm} pid={uid}/>
+        }
+        )
       }
       <Button onClick={handleClick}>Add Skill Category</Button>
     </Wrap>

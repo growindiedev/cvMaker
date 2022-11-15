@@ -9,8 +9,9 @@ const Skill = ({innerForm, setInnerForm, id, parentId}) => {
 
   const removeInnerForm = (e) => {
     e.preventDefault();
-    setInnerForm(innerForm.filter((_, index) => {
-      return id !== index
+    setInnerForm(innerForm.filter((item) => {
+      let {uid} = item
+      return uid !== id;
     }))
   }
 

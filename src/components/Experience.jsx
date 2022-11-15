@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useFormContext } from 'react-hook-form'
-
+import uniqid from 'uniqid';
 import styled from 'styled-components'
 import Input from './common/Input'
 import Button from './common/Button'
@@ -30,20 +30,21 @@ const Wrapper = styled.form`
 
 }
 `
-const InnerForm = ({innerForm, setInnerForm, id}) => {
+const InnerForm = ({innerForm, setInnerForm, id, index}) => {
   const {register, unregister} =  useFormContext();
 
   const removeInnerForm = (e) => {
     e.preventDefault();
     unregister()
-    setInnerForm(innerForm.filter((_, index) => {
-      return id !== index
+    setInnerForm(innerForm.filter((item) => {
+      let {uid} = item
+      return uid !== id;
     }))
   }
   
   return (
   <div className='grid-container'>
-    <Input placeholder='Title' {...register(`experience.title.${id}`)}/>
+    <Input placeholder='Title' {...register(`experience.${id}.title`)}/>
     <Input placeholder='Company Name' {...register(`experience.companyName.${id}`)}/>
     <Input placeholder='Start Date' {...register(`experience.startDate.${id}`)}/>
     <Input placeholder='End Date' {...register(`experience.endDate.${id}`)}/>
@@ -57,7 +58,7 @@ const Experience = () => {
 
   const handleClick = (e) => {
     e && e.preventDefault()
-    setInnerForm([...innerForm, InnerForm])
+    setInnerForm([...innerForm, {InnerForm: InnerForm, uid: uniqid()}])
   }
 
   useEffect(() => handleClick, [])
@@ -66,7 +67,11 @@ const Experience = () => {
     <Wrapper>
       <h2 className='section-heading'>Experience</h2>
       {
-        innerForm.map((Form, i) => <Form key={i} id={i} innerForm={innerForm} setInnerForm={setInnerForm}/>)
+        innerForm.map((item, i) => {
+          let {InnerForm, uid} = item;
+          return <InnerForm key={uid} id={uid} innerForm={innerForm} setInnerForm={setInnerForm} index={i}/>
+        }
+        )
       }
     <Button onClick={handleClick}>Add Position</Button>
     </Wrapper>

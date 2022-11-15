@@ -1,10 +1,12 @@
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
 import Input from './common/Input'
 import Button from './common/Button'
 import TextArea from './common/TextArea'
+import uniqid from 'uniqid';
+
 
 const Wrapper = styled.form`
   margin-bottom: 2rem;
@@ -29,33 +31,41 @@ const Wrapper = styled.form`
 }
 `
 
-const InnerForm = ({innerForm, setInnerForm, id}) => {
-  const {register} =  useFormContext();
+const InnerForm = ({innerForm, setInnerForm, id, index}) => {
+
+  const inputRef = useRef(null);
+
+  const {register, unregister} =  useFormContext();
   const removeInnerForm = (e) => {
     e.preventDefault();
-    setInnerForm(innerForm.filter((_, index) => {
-      return id !== index
+    // unregister(`education.degree.${uid}`)
+    // unregister(`education.school.${uid}`)
+    // unregister(`education.startDate.${uid}`)
+    // unregister(`education.endDate.${uid}`)
+    // unregister(`education.description.${uid}`)
+    setInnerForm(innerForm.filter((item) => {
+      let {uid} = item
+      return uid !== id;
     }))
   }
   
   return (
-  <div className='grid-container'>
-        <Input placeholder='Course/Degree' {...register(`education.degree.${id}`)}/>
-        <Input placeholder='School' {...register(`education.school.${id}`)}/>
-        <Input placeholder='Start Date' className='title' {...register(`education.startDate.${id}`)}/>
-        <Input placeholder='End Date' {...register(`education.endDate.${id}`)}/>
-        <TextArea className='textArea' placeholder='description' rows={3} {...register(`education.description.${id}`)}/>
-        <Button onClick={removeInnerForm} className='rmv-edu'>Remove Education</Button>
+  <div className='grid-container' ref={inputRef}>
+        <Input placeholder='Course/Degree' {...register(`education.degree.${index}`)}/>
+        <Input placeholder='School' {...register(`education.school.${index}`)}/>
+        <Input placeholder='Start Date' className='title' {...register(`education.startDate.${index}`)}/>
+        <Input placeholder='End Date' {...register(`education.endDate.${index}`)}/>
+        <TextArea className='textArea' placeholder='description' rows={3} {...register(`education.description.${index}`)}/>
+        <Button onClick={(e) => removeInnerForm(e)} className='rmv-edu'>Remove Education</Button>
   </div>
 )}
 
 const Education = () => {
-
   const [innerForm, setInnerForm] = useState([])
 
   const handleClick = (e) => {
     e && e.preventDefault()
-    setInnerForm([...innerForm, InnerForm])
+    setInnerForm([...innerForm, {InnerForm: InnerForm, uid: uniqid()}])
   }
 
   useEffect(() => handleClick, [])
@@ -64,7 +74,10 @@ const Education = () => {
     <Wrapper>
       <h2 className='section-heading'>Education</h2>
       {
-        innerForm.map((Form, i) => <Form key={i} id={i} innerForm={innerForm} setInnerForm={setInnerForm}/>)
+        innerForm.map((item, i) => {
+        let {InnerForm, uid} = item;
+        return <InnerForm key={uid} id={uid} innerForm={innerForm} setInnerForm={setInnerForm} index={i}/>
+      })
       }
     <Button onClick={handleClick}>Add Education</Button>
     </Wrapper>

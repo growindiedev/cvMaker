@@ -62,7 +62,7 @@ const Experience = () => {
     setInnerForm([...innerForm, {InnerForm: InnerForm, uid: uniqid()}])
   }
 
-  useEffect(() => handleClick, [])
+ useEffect(() => handleClick, [])
 
   return (
     <Wrapper>

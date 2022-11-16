@@ -57,13 +57,16 @@ const InnerForm = ({innerForm, setInnerForm, id, index}) => {
 
 const Education = () => {
   const [innerForm, setInnerForm] = useState([])
+  const {getValues} =  useFormContext();
 
   const handleClick = (e) => {
     e && e.preventDefault()
     setInnerForm([...innerForm, {InnerForm: InnerForm, uid: uniqid()}])
   }
 
-  useEffect(() => handleClick, [])
+  useEffect(() => {
+      handleClick();
+  }, [])
 
   return (
     <Wrapper>

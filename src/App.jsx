@@ -68,13 +68,7 @@ function App() {
         endDate: '1998',
         description: "Learnt how to code and built software that scales"
       },
-      {
-        degree: 'BITCH',
-        school: 'MIT, ',
-        startDate: '1994',
-        endDate: '1998',
-        description: "Learnt how to code and built software that scales"
-      }
+   
      ],
       
     skillCategory: ["Programming"],

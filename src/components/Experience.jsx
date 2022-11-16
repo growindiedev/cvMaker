@@ -34,21 +34,22 @@ const InnerForm = ({innerForm, setInnerForm, id, index}) => {
   const {register, unregister} =  useFormContext();
 
   const removeInnerForm = (e) => {
-    e.preventDefault();
-    unregister()
+    e && e.preventDefault();
+    unregister('experience')
     setInnerForm(innerForm.filter((item) => {
       let {uid} = item
       return uid !== id;
     }))
   }
+
   
   return (
   <div className='grid-container'>
-    <Input placeholder='Title' {...register(`experience.${id}.title`)}/>
-    <Input placeholder='Company Name' {...register(`experience.companyName.${id}`)}/>
-    <Input placeholder='Start Date' {...register(`experience.startDate.${id}`)}/>
-    <Input placeholder='End Date' {...register(`experience.endDate.${id}`)}/>
-    <TextArea className='textArea' placeholder='description' rows={3} {...register(`experience.description.${id}`)}/>
+    <Input placeholder='Title' {...register(`experience.${index}.title`)}/>
+    <Input placeholder='Company Name' {...register(`experience.${index}.companyName`)}/>
+    <Input placeholder='Start Date' {...register(`experience.${index}.startDate`)}/>
+    <Input placeholder='End Date' {...register(`experience.${index}.endDate`)}/>
+    <TextArea className='textArea' placeholder='description' rows={3} {...register(`experience.${index}.description`)}/>
     <Button className='rmv-pos' onClick={removeInnerForm}>Remove Position</Button>
   </div>
 )}

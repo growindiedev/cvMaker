@@ -57,8 +57,8 @@ const Preview = () => {
         <h2>Skills</h2>
         {getValues("skillCategory") &&
           getValues("skillCategory").map((category, i) => (
-            <div className="obj-container">
-              <div key={i} class="cv-main">{`${category}`}</div>
+            <div key={i} className="obj-container">
+              <div className="cv-main">{`${category}`}</div>
               {getValues(`skill.${i}`) &&
                 getValues(`skill.${i}`).map((skill, i) => (
                   <div className="cv-sub" key={i}>

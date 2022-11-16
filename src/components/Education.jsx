@@ -33,16 +33,11 @@ const Wrapper = styled.form`
 
 const InnerForm = ({innerForm, setInnerForm, id, index}) => {
 
-  const inputRef = useRef(null);
 
   const {register, unregister} =  useFormContext();
   const removeInnerForm = (e) => {
     e.preventDefault();
-    // unregister(`education.degree.${uid}`)
-    // unregister(`education.school.${uid}`)
-    // unregister(`education.startDate.${uid}`)
-    // unregister(`education.endDate.${uid}`)
-    // unregister(`education.description.${uid}`)
+    unregister('education')
     setInnerForm(innerForm.filter((item) => {
       let {uid} = item
       return uid !== id;
@@ -50,12 +45,12 @@ const InnerForm = ({innerForm, setInnerForm, id, index}) => {
   }
   
   return (
-  <div className='grid-container' ref={inputRef}>
-        <Input placeholder='Course/Degree' {...register(`education.degree.${index}`)}/>
-        <Input placeholder='School' {...register(`education.school.${index}`)}/>
-        <Input placeholder='Start Date' className='title' {...register(`education.startDate.${index}`)}/>
-        <Input placeholder='End Date' {...register(`education.endDate.${index}`)}/>
-        <TextArea className='textArea' placeholder='description' rows={3} {...register(`education.description.${index}`)}/>
+  <div className='grid-container'>
+        <Input placeholder='Course/Degree' {...register(`education.${index}.degree`)}/>
+        <Input placeholder='School' {...register(`education.${index}.school`)}/>
+        <Input placeholder='Start Date' {...register(`education.${index}.startDate`)}/>
+        <Input placeholder='End Date' {...register(`education.${index}.endDate`)}/>
+        <TextArea className='textArea' placeholder='description' rows={3} {...register(`education.${index}.description`)}/>
         <Button onClick={(e) => removeInnerForm(e)} className='rmv-edu'>Remove Education</Button>
   </div>
 )}

@@ -39,8 +39,8 @@ const Wrapper = styled.form`
 
 `
 
-const SkillCategory = ({skillForm, setSkillForm, pid}) => {
-  const {register} =  useFormContext();
+const SkillCategory = ({skillForm, setSkillForm, pid, index}) => {
+  const {register, unregister} =  useFormContext();
   const [innerForm, setInnerForm] = useState([])
 
   const addSkill = (e) => {
@@ -53,7 +53,10 @@ const SkillCategory = ({skillForm, setSkillForm, pid}) => {
 
   const removeSkillCategory = (e) => {
     e.preventDefault();
-    setSkillForm(skillForm.filter((item, index) => {
+    unregister(`skillCategory`)
+    unregister(`skill`)
+    //unregister()
+    setSkillForm(skillForm.filter((item) => {
       let {uid} = item
       return uid !== pid;
     }))
@@ -63,13 +66,14 @@ const SkillCategory = ({skillForm, setSkillForm, pid}) => {
   return (
     <Wrapper>
       <div className='flex-conatiner'>
-      <Input className="skill-category" placeholder="Skill category" {...register(`skillCategory.${pid}`)}/>
+      {/* <Input className="skill-category" placeholder="Skill category" {...register(`skills.${index}.skillCategory`)}/> */}
+      <Input className="skill-category" placeholder="Skill category" {...register(`skillCategory.${index}`)}/>
       <Button className='close-skill-category' onClick={removeSkillCategory}>X</Button>
       </div>
       {
-          innerForm.map((item) => {
+          innerForm.map((item, i) => {
             let {Skill, uid} = item;
-            return <Skill key={uid} id={uid} parentId={pid} innerForm={innerForm} setInnerForm={setInnerForm}/>
+            return <Skill key={uid} id={uid} parentId={pid} innerForm={innerForm} setInnerForm={setInnerForm} index={i} parentIndex={index}/>
           }
         )
       }
@@ -94,9 +98,9 @@ const Skills = () => {
     <Wrap>
       <h2 className='section-heading'>Skills</h2>
       {
-        skillForm.map((item) => {
+        skillForm.map((item, i) => {
           let {SkillCategory, uid} = item;
-          return <SkillCategory key={uid} skillForm={skillForm} setSkillForm={setSkillForm} pid={uid}/>
+          return <SkillCategory key={uid} skillForm={skillForm} setSkillForm={setSkillForm} pid={uid} index={i}/>
         }
         )
       }

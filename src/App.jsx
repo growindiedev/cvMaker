@@ -34,10 +34,10 @@ function App() {
   const [isEditMode, setIsEditMode] = useState(true)
   const methods = useForm();
 
+  console.log('values', methods.getValues())
   const handleMode = (e) => {
     e.preventDefault()
     setIsEditMode(!isEditMode)
-    console.log('values', methods.getValues())
   }
 
   const autofill = {
@@ -51,19 +51,32 @@ function App() {
     "github": "naval",
     "personalDescription": "Naval Ravikant is an Indian-American entrepreneur and investor. He is the co-founder, chairman and former CEO of AngelList. He has invested early-stage in over 200 companies including Uber, FourSquare, Twitter, Wish.com, Poshmark, Postmates, Thumbtack, Notion, SnapLogic, Opendoor, Clubhouse, Stack Overflow, Bolt, OpenDNS, Yammer, and Clearview AI, with over 70 total exits and more than 10 Unicorn companies",
 
-    experience: {
-      title: ['CEO'],
-      companyName: ['AngelList LLP'],
-      startDate: ['2010'],
-      description: ['startups don\'t funt themselves']
-    },
-    education: {
-      degree: ['BA Computer Science'],
-      school: ['MIT, Boston'],
-      startDate: ['1994'],
-      endDate: ['1998'],
-      description: ["Learnt how to code and built software that scales"]
-    },
+    experience: [
+      {
+      title: 'CEO',
+      companyName: 'AngelList LLP',
+      startDate: '2010',
+      description: 'startups don\'t funt themselves'
+    }
+    ],
+     education: 
+     [
+      {
+        degree: 'BA Computer Science',
+        school: 'MIT, Boston',
+        startDate: '1994',
+        endDate: '1998',
+        description: "Learnt how to code and built software that scales"
+      },
+      {
+        degree: 'BITCH',
+        school: 'MIT, ',
+        startDate: '1994',
+        endDate: '1998',
+        description: "Learnt how to code and built software that scales"
+      }
+     ],
+      
     skillCategory: ["Programming"],
     skill: [
       [

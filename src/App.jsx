@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./components/common/Button";
 import Form from "./components/Form";
@@ -30,7 +30,6 @@ const BtnContainer = styled.div`
 function App() {
   const [isEditMode, setIsEditMode] = useState(true);
   const methods = useForm();
-  const [_, forceUpdate] = useReducer((x) => x + 1, 0);
 
   console.log("values", methods.getValues());
   const handleMode = (e) => {
